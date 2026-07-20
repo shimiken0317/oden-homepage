@@ -16,7 +16,7 @@ const zen = Zen_Maru_Gothic({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? "https://oden-no-page.example.com"),
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? "https://oden-no-page.shimiken4123.chatgpt.site"),
   title: { default: "おでんのページ", template: "%s｜おでんのページ" },
   description: "筋トレ、AI、プログラミング。おでんくんと、暮らしの知識をひとつずつ。",
   alternates: { canonical: "/" },

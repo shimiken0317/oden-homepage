@@ -1,0 +1,2 @@
+import Link from "next/link";
+export function SiteFooter() { return <footer><div className="shell footer-inner"><div><Link href="/" className="brand"><span className="brand-mark"><i /><b /></span><span>おでんのページ<small>好きなことを、じっくり煮込む。</small></span></Link><p>© 2026 Oden no Page. いい出汁が出ますように。</p></div><div className="footer-links"><Link href="/articles">記事</Link><Link href="/about">About</Link><Link href="/contact">お問い合わせ</Link><Link href="/rss.xml">RSS</Link></div></div></footer>; }

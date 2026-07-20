@@ -1,0 +1,6 @@
+import type { Metadata } from "next";
+import Image from "next/image";
+import Link from "next/link";
+import { Breadcrumbs } from "../components/breadcrumbs";
+export const metadata: Metadata = { title: "このサイトについて", description: "おでんのページと、マスコットのおでんくんについて。", alternates:{canonical:"/about"} };
+export default function AboutPage(){return <div className="shell page-wrap"><Breadcrumbs items={[{label:"About"}]} /><section className="about-hero"><div><p className="kicker">About this place</p><h1>うまくいかない日も、<br />じっくり煮込めば味になる。</h1><p>ここは、学んだこと、試したこと、ちょっと失敗したことを残す個人の知識庫です。誰かの「やってみよう」を、少しだけ軽くできたらうれしいです。</p></div><div className="about-mascot"><Image src="/characters/oden-hero.png" alt="おでんくん" width={420} height={420}/></div></section><section className="about-grid"><div className="about-story"><p className="kicker">Our little story</p><h2>おでんくんについて</h2><p>こんにゃくの帽子、たまごの顔、ちくわの体。筋トレが好きだけれど、ちょっと頑張りすぎて失敗することもあります。</p><p>完璧じゃなくても、一生懸命なら前へ進める。そんなこのサイトの気持ちを、いちばん近くで表してくれる相棒です。</p><Link className="text-link" href="/articles">おでんくんと記事を読む →</Link></div><div className="principles"><div><span>01</span><h3>わかりやすく</h3><p>専門用語より、自分のことばで。</p></div><div><span>02</span><h3>正直に</h3><p>成功だけでなく、失敗も記録する。</p></div><div><span>03</span><h3>ゆっくり長く</h3><p>流行より、あとからも役立つ知識を。</p></div></div></section></div>}

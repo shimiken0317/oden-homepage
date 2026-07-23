@@ -1,6 +1,6 @@
-import Image from "next/image";
 import Link from "next/link";
 import { ArticleCard } from "./components/article-card";
+import { OdenChan } from "./components/oden-chan";
 import { categories, articles } from "./lib/articles";
 
 export default function Home() {
@@ -13,16 +13,16 @@ export default function Home() {
         <div className="hero-copy">
           <p className="eyebrow"><span className="status-dot" /> Oden&apos;s small knowledge base</p>
           <h1>好きなことを、<br /><span>じっくり煮込む。</span></h1>
-          <p className="hero-lead">筋トレ、AI、プログラミング、日々の気づき。<br />おでんくんと一緒に、暮らしの知識をひとつずつ。</p>
+          <p className="hero-lead">筋トレ、投資、プログラミング、夫婦の日々。<br />おでんちゃんと一緒に、暮らしの知識をひとつずつ。</p>
           <div className="hero-actions">
             <Link className="button primary" href="/articles">記事を読みにいく <span>→</span></Link>
             <Link className="button ghost" href="/about">このサイトについて</Link>
           </div>
         </div>
-        <div className="hero-mascot" aria-label="手を振るおでんくん">
+        <div className="hero-mascot">
           <div className="speech">こんにちは！<br /><strong>今日は何を読む？</strong></div>
           <span className="spark one">✦</span><span className="spark two">✦</span>
-          <Image src="/characters/oden-hero.png" alt="手を振るおでんくん" width={520} height={520} priority />
+          <OdenChan priority label="手を振って迎える、妻が夫をイメージして描いたおでんちゃん" />
         </div>
       </section>
 
@@ -47,7 +47,7 @@ export default function Home() {
 
       <section className="section shell">
         <div className="feature-panel">
-          <div><p className="kicker">Recommended</p><h2>迷ったら、まずはこの一杯から。</h2><p>失敗や遠回りも、あとから誰かの近道になる。今月のおでんくんおすすめ記事です。</p><Link className="text-link" href={`/articles/${featured.slug}`}>おすすめを読む →</Link></div>
+          <div><p className="kicker">Recommended</p><h2>迷ったら、まずはこの一杯から。</h2><p>夫婦の失敗や遠回りも、あとから誰かの近道になる。今月のおでんちゃんおすすめ記事です。</p><Link className="text-link" href={`/articles/${featured.slug}`}>おすすめを読む →</Link></div>
           <div className="quote-card"><span>“</span><p>{featured.excerpt}</p><small>{featured.category} ・ {featured.readingTime}分で読めます</small></div>
         </div>
       </section>

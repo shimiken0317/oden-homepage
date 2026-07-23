@@ -18,10 +18,10 @@ const zen = Zen_Maru_Gothic({
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? "https://oden-no-page.shimiken4123.chatgpt.site"),
   title: { default: "おでんのページ", template: "%s｜おでんのページ" },
-  description: "筋トレ、AI、プログラミング。おでんくんと、暮らしの知識をひとつずつ。",
+  description: "筋トレ、投資、プログラミング、夫婦の日々。おでんちゃんと、暮らしの知識をひとつずつ。",
   alternates: { canonical: "/" },
-  openGraph: { type: "website", locale: "ja_JP", siteName: "おでんのページ", title: "おでんのページ", description: "好きなことを、じっくり煮込む。", images: [{ url: "/og.png", width: 1536, height: 1024, alt: "おでんのページ" }] },
-  twitter: { card: "summary_large_image", title: "おでんのページ", description: "好きなことを、じっくり煮込む。", images: ["/og.png"] },
+  openGraph: { type: "website", locale: "ja_JP", siteName: "おでんのページ", title: "おでんのページ", description: "好きなことを、じっくり煮込む。", images: [{ url: "/characters/oden-sketch-sheet.png", width: 1395, height: 1154, alt: "妻が夫をイメージして描いた、おでんちゃんの原画" }] },
+  twitter: { card: "summary_large_image", title: "おでんのページ", description: "好きなことを、じっくり煮込む。", images: ["/characters/oden-sketch-sheet.png"] },
   icons: {
     icon: "/favicon.svg",
     shortcut: "/favicon.svg",

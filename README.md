@@ -75,3 +75,4 @@ SEARCH:  Breadcrumb → Search input → Result count → Cards / mascot empty s
 - Cloudflare Images transformations may incur usage charges. Review the current
   Cloudflare Images pricing and account limits before enabling production
   traffic.
+Update deployment after setting NEXT_PUBLIC_SITE_URL

@@ -65,3 +65,13 @@ SEARCH:  Breadcrumb → Search input → Result count → Cards / mascot empty s
 4. 必要になった時点でGitベースCMS、コメント、ニュースレターを段階導入。
 
 ローカル起動は `npm run dev`、本番確認は `npm run build` です。公開URLを使う場合は `NEXT_PUBLIC_SITE_URL` を設定してください。
+
+## Cloudflare Workers deployment
+
+- Cloudflare Workers Builds uses `pnpm run build` and `pnpm run deploy`.
+- Set `NEXT_PUBLIC_SITE_URL` to the final production origin in the Cloudflare
+  build environment. Do not commit the real production URL to the repository.
+- The Worker uses the `ASSETS` static-assets binding and the `IMAGES` binding.
+- Cloudflare Images transformations may incur usage charges. Review the current
+  Cloudflare Images pricing and account limits before enabling production
+  traffic.

@@ -3,6 +3,7 @@ import { Noto_Sans_JP, Zen_Maru_Gothic } from "next/font/google";
 import "./globals.css";
 import { SiteHeader } from "./components/site-header";
 import { SiteFooter } from "./components/site-footer";
+import { getSiteUrl } from "./lib/site-url";
 
 const noto = Noto_Sans_JP({
   variable: "--font-noto",
@@ -16,7 +17,7 @@ const zen = Zen_Maru_Gothic({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? "https://oden-no-page.shimiken4123.chatgpt.site"),
+  metadataBase: new URL(getSiteUrl()),
   title: { default: "おでんのページ", template: "%s｜おでんのページ" },
   description: "筋トレ、投資、プログラミング、夫婦の日々。おでんちゃんと、暮らしの知識をひとつずつ。",
   alternates: { canonical: "/" },

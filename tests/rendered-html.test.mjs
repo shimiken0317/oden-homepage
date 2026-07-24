@@ -28,14 +28,18 @@ test("トップページがブランド情報とともにサーバーレンダ�
 });
 
 test("公開用メタデータと使い捨てプレビューの除去を確認する", async () => {
-  const [layout, packageJson] = await Promise.all([
+  const [layout, siteUrl, packageJson] = await Promise.all([
     readFile(new URL("../app/layout.tsx", import.meta.url), "utf8"),
+    readFile(new URL("../app/lib/site-url.ts", import.meta.url), "utf8"),
     readFile(new URL("../package.json", import.meta.url), "utf8"),
   ]);
 
   assert.match(layout, /title:\s*\{ default: "おでんのページ"/);
-  assert.match(layout, /oden-no-page\.shimiken4123\.chatgpt\.site/);
+  assert.match(layout, /getSiteUrl\(\)/);
   assert.match(layout, /oden-sketch-sheet\.png/);
+  assert.match(siteUrl, /process\.env\.NEXT_PUBLIC_SITE_URL/);
+  assert.match(siteUrl, /http:\/\/localhost:3000/);
+  assert.doesNotMatch(siteUrl, /chatgpt\.site/);
   assert.doesNotMatch(layout, /codex-preview|_sites-preview/);
   assert.doesNotMatch(packageJson, /react-loading-skeleton/);
 });

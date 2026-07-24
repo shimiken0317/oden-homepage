@@ -1,22 +1,8 @@
 import type { Metadata } from "next";
-import { Noto_Sans_JP, Zen_Maru_Gothic } from "next/font/google";
 import "./globals.css";
 import { SiteHeader } from "./components/site-header";
 import { SiteFooter } from "./components/site-footer";
 import { getSiteUrl } from "./lib/site-url";
-
-const noto = Noto_Sans_JP({
-  variable: "--font-noto",
-  subsets: ["latin"],
-  preload: false,
-});
-
-const zen = Zen_Maru_Gothic({
-  variable: "--font-zen",
-  subsets: ["latin"],
-  weight: ["500", "700"],
-  preload: false,
-});
 
 export const metadata: Metadata = {
   metadataBase: new URL(getSiteUrl()),
@@ -38,7 +24,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ja" suppressHydrationWarning>
-      <body className={`${noto.variable} ${zen.variable}`}>
+      <body>
         <SiteHeader />
         <main>{children}</main>
         <SiteFooter />

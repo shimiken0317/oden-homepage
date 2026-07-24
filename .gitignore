@@ -2,6 +2,7 @@
 
 # dependencies
 /node_modules
+/package-lock.json
 /.npm-cache
 /.pnpm-store
 /.openai/.openai
@@ -23,7 +24,12 @@
 
 # misc
 .DS_Store
+Thumbs.db
 *.pem
+*.log
+/logs/
+/.idea/
+/.vscode/
 
 # debug
 npm-debug.log*
@@ -36,10 +42,15 @@ yarn-error.log*
 
 # vercel
 .vercel
+/.turbo/
 
 # typescript
 next-env.d.ts
+*.tsbuildinfo
 /dist/
 /.wrangler/
 /outputs/
 /work/
+
+# `build/` is intentionally tracked: it contains source for the Sites Vite
+# integration, not generated build output.

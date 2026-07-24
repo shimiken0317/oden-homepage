@@ -8,12 +8,14 @@ import { getSiteUrl } from "./lib/site-url";
 const noto = Noto_Sans_JP({
   variable: "--font-noto",
   subsets: ["latin"],
+  preload: false,
 });
 
 const zen = Zen_Maru_Gothic({
   variable: "--font-zen",
   subsets: ["latin"],
   weight: ["500", "700"],
+  preload: false,
 });
 
 export const metadata: Metadata = {

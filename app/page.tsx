@@ -22,7 +22,11 @@ export default function Home() {
         <div className="hero-mascot">
           <div className="speech">こんにちは！<br /><strong>今日は何を読む？</strong></div>
           <span className="spark one">✦</span><span className="spark two">✦</span>
-          <OdenChan priority label="手を振って迎える、妻が夫をイメージして描いたおでんちゃん" />
+          <OdenChan
+            priority
+            sizes="(max-width: 680px) 350px, 430px"
+            label="手を振って迎える、妻が夫をイメージして描いたおでんちゃん"
+          />
         </div>
       </section>
 

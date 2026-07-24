@@ -4,9 +4,10 @@ type OdenChanProps = {
   className?: string;
   priority?: boolean;
   label?: string;
+  sizes?: string;
 };
 
-export function OdenChan({ className = "", priority = false, label = "おでんちゃん" }: OdenChanProps) {
+export function OdenChan({ className = "", priority = false, label = "おでんちゃん", sizes }: OdenChanProps) {
   return (
     <div className={`oden-chan-original ${className}`} role="img" aria-label={label}>
       <Image
@@ -15,6 +16,7 @@ export function OdenChan({ className = "", priority = false, label = "おでん�
         width={1395}
         height={1154}
         priority={priority}
+        sizes={sizes}
       />
     </div>
   );

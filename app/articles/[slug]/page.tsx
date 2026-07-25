@@ -1,19 +1,41 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { notFound } from "next/navigation";
-import { Breadcrumbs } from "../../components/breadcrumbs";
-import { FavoriteButton } from "../../components/favorite-button";
-import { ArticleCard } from "../../components/article-card";
-import { OdenChan } from "../../components/oden-chan";
-import { WorkoutLogArticle } from "../../components/workout-log-article";
-import { articles, getArticle } from "../../lib/articles";
+import { ArticlePageView } from "../../components/article-page-view";
+import { getPostBySlug, getPublishedPosts } from "../../lib/posts";
 
-export function generateStaticParams() { return articles.map(({ slug }) => ({ slug })); }
-export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> { const { slug } = await params; const article = getArticle(slug); if (!article) return {}; return { title: article.title, description: article.excerpt, alternates: { canonical: `/articles/${slug}` }, openGraph: { type: "article", title: article.title, description: article.excerpt, publishedTime: article.publishedAt, modifiedTime: article.updatedAt } }; }
+export function generateStaticParams() {
+  return getPublishedPosts().map(({ slug }) => ({ slug }));
+}
 
-export default async function ArticlePage({ params }: { params: Promise<{ slug: string }> }) {
-  const { slug } = await params; const article = getArticle(slug); if (!article) notFound(); const index = articles.findIndex(a => a.slug === slug); const related = articles.filter(a => a.slug !== slug && (a.category === article.category || a.tags.some(t => article.tags.includes(t)))).slice(0, 2); const next = articles[(index + 1) % articles.length];
-  if (article.kind === "workout-log") return <WorkoutLogArticle article={article} next={next} related={related} />;
-  const jsonLd = { "@context": "https://schema.org", "@type": "BlogPosting", headline: article.title, description: article.excerpt, datePublished: article.publishedAt, dateModified: article.updatedAt, author: { "@type": "Person", name: "おでん" }, publisher: { "@type": "Organization", name: "おでんのページ" }, mainEntityOfPage: `/articles/${article.slug}` };
-  return <><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} /><div className="shell article-layout"><article className="article-main"><Breadcrumbs items={[{label: article.category, href: `/categories/${article.categorySlug}`}, {label: article.title}]} /><header className="article-header"><Link className="category-pill" href={`/categories/${article.categorySlug}`}>{article.category}</Link><h1>{article.title}</h1><p>{article.excerpt}</p><div className="article-byline"><div className="avatar">お</div><span><strong>おでん</strong><small>公開 {article.publishedAt} ・ 更新 {article.updatedAt} ・ {article.readingTime}分</small></span><FavoriteButton slug={slug} /></div></header><div className={`article-cover tone-${article.tone}`}><span>{article.category === "AI" ? "AI" : article.category.slice(0,1)}</span><small>ODEN&apos;S NOTE / {article.publishedAt.slice(0,4)}</small></div><div className="article-content"><p className="lead">「ちゃんとやろう」と思うほど、最初の一歩は重たくなります。この記事では、夫婦で実際に試して残った、シンプルな考え方だけをまとめます。</p><h2 id="start">まずは、続く大きさにする</h2><p>いちばん大切なのは、今日だけ完璧にこなすことではありません。明日も戻ってこられる余白を残すことです。予定の七割で終えても、記録をひとつ残せたら十分です。</p><div className="oden-note"><OdenChan label="記事をゆるく案内するおでんちゃん" /><p><strong>おでんちゃんのひとこと</strong>小さく始めるのは、弱気じゃない。明日も続けるための作戦だよ。</p></div><h2 id="steps">迷わないための3ステップ</h2><ol><li><strong>始める条件を決める</strong><p>時間ではなく「朝のコーヒーのあと」のような合図に結びつけます。</p></li><li><strong>最低ラインを小さくする</strong><p>調子が悪い日でも達成できる単位を、最初から用意します。</p></li><li><strong>一行だけ記録する</strong><p>感想よりも、やった事実を残します。次回の自分への小さな引き継ぎです。</p></li></ol><blockquote>調子のいい日に頑張るより、調子の悪い日に戻ってこられる仕組みをつくる。</blockquote><h2 id="summary">まとめ</h2><p>大きな変化は、小さな反復のあとにやってきます。まずは一週間、できた日の印を並べてみてください。</p><div className="share-row"><span>この記事をシェア</span><a href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(article.title)}`} target="_blank" rel="noreferrer">X</a><button>リンクをコピー</button></div></div></article><aside className="toc"><span>このページの目次</span><a href="#start">続く大きさにする</a><a href="#steps">3つのステップ</a><a href="#summary">まとめ</a><hr /><FavoriteButton slug={slug} /></aside></div><section className="shell section"><div className="next-article"><span>次に煮えた記事</span><Link href={`/articles/${next.slug}`}>{next.title}<b>→</b></Link></div>{related.length > 0 && <><div className="section-head"><div><p className="kicker">Related notes</p><h2>あわせて読みたい</h2></div></div><div className="article-grid related">{related.map((item, i) => <ArticleCard article={item} index={i} key={item.slug} />)}</div></>}</section></>;
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
+  const { slug } = await params;
+  const post = getPostBySlug(slug);
+  if (!post) return {};
+  return {
+    title: post.title,
+    description: post.excerpt,
+    alternates: { canonical: `/articles/${slug}` },
+    openGraph: {
+      type: "article",
+      title: post.title,
+      description: post.excerpt,
+      publishedTime: post.publishedAt,
+      modifiedTime: post.updatedAt,
+    },
+  };
+}
+
+export default async function ArticlePage({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
+  const { slug } = await params;
+  const post = getPostBySlug(slug);
+  if (!post) notFound();
+  return <ArticlePageView post={post} publishedPosts={getPublishedPosts()} />;
 }

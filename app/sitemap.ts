@@ -1,9 +1,11 @@
 import type { MetadataRoute } from "next";
-import { articles, categories } from "./lib/articles";
+import { getAllCategories, getPublishedPosts } from "./lib/posts";
 import { getSiteUrl } from "./lib/site-url";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const base = getSiteUrl();
+  const articles = getPublishedPosts();
+  const categories = getAllCategories();
   const fixed = [
     "",
     "/articles",

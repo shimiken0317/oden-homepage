@@ -1,9 +1,11 @@
 import Link from "next/link";
 import { ArticleCard } from "./components/article-card";
 import { OdenChan } from "./components/oden-chan";
-import { categories, articles } from "./lib/articles";
+import { getAllCategories, getPublishedPosts } from "./lib/posts";
 
 export default function Home() {
+  const articles = getPublishedPosts();
+  const categories = getAllCategories();
   const latest = articles.slice(0, 4);
   const featured = articles.find((article) => article.featured) ?? articles[0];
 

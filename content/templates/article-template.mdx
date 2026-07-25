@@ -1,0 +1,55 @@
+---
+title: "記事タイトル"
+slug: "article-slug"
+excerpt: "記事の概要を1〜2文で入力します。"
+category: "筋トレ"
+categorySlug: "training"
+tags:
+  - "スクワット"
+  - "筋トレ"
+publishedAt: "2026-07-26"
+updatedAt: "2026-07-26"
+status: "draft"
+featured: false
+author: "おでんちゃん"
+---
+
+記事の導入文を書きます。
+
+## 最初の見出し
+
+本文を書きます。外部リンクは[表示する文字](https://example.com)のように書きます。
+
+### 小見出し
+
+- 箇条書き
+- 箇条書き
+
+1. 番号付きリスト
+2. 番号付きリスト
+
+> 引用文はこのように書きます。
+
+> [!ODEN] おでんちゃんの一言は、この形式で書きます。
+
+画像ファイルを `public/articles/article-slug/example.webp` に置いた場合：
+
+![画像の内容を説明する代替テキスト](/articles/article-slug/example.webp)
+
+| 種目 | 重量 | 回数 |
+| --- | ---: | ---: |
+| スクワット | 100kg | 5回 |
+
+```ts
+const message = "コードブロックの例";
+console.log(message);
+```
+
+---
+
+## 公開前の手順
+
+1. 下書き中は `status: "draft"` のまま保存します。
+2. 本文とfrontmatterを確認し、`updatedAt` を更新します。
+3. 公開するときだけ `status: "published"` に変更します。
+4. mainへ反映するとCloudflareの自動デプロイ後に公開されます。

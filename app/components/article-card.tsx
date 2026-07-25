@@ -1,7 +1,7 @@
 import Link from "next/link";
-import type { Article } from "../lib/articles";
+import type { PostSummary } from "../lib/posts";
 
-export function ArticleCard({ article, index = 0 }: { article: Article; index?: number }) {
+export function ArticleCard({ article, index = 0 }: { article: PostSummary; index?: number }) {
   return <article className="article-card">
     <Link href={`/articles/${article.slug}`} className={`card-visual tone-${article.tone}`}>
       <span className="visual-number">0{index + 1}</span><span className="visual-mark">{article.category === "AI" ? "AI" : article.category.slice(0, 1)}</span><span className="visual-line" />

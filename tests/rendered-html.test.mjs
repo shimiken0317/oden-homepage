@@ -43,3 +43,49 @@ test("公開用メタデータと使い捨てプレビューの除去を確認�
   assert.doesNotMatch(layout, /codex-preview|_sites-preview/);
   assert.doesNotMatch(packageJson, /react-loading-skeleton/);
 });
+
+const existingSlugs = [
+  "workout-log-2026-07-25",
+  "training-menu-for-beginners",
+  "ai-notes-workflow",
+  "running-slow-is-fine",
+  "desk-gadgets-2026",
+  "nextjs-content-design",
+  "index-investing-first-year",
+];
+
+test("既存の記事URLとMDX本文が維持される", async () => {
+  for (const slug of existingSlugs) {
+    const response = await render(`/articles/${slug}`);
+    assert.equal(response.status, 200, slug);
+    const html = await response.text();
+    assert.match(html, new RegExp(`/articles/${slug}`));
+    assert.match(html, /article-content/);
+  }
+});
+
+test("draftはトップ、記事一覧、検索、RSS、sitemapに含まれない", async () => {
+  for (const path of ["/", "/articles", "/search", "/rss.xml", "/sitemap.xml"]) {
+    const response = await render(path);
+    assert.equal(response.status, 200, path);
+    const body = await response.text();
+    assert.doesNotMatch(body, /draft-example|DRAFT_CONTENT_MUST_NOT_SHIP_7F3A9C/, path);
+  }
+
+  for (const path of ["/articles/draft-example", "/articles/preview/draft-example"]) {
+    const response = await render(path);
+    assert.equal(response.status, 404, path);
+  }
+});
+
+test("published記事だけがRSSとsitemapに含まれる", async () => {
+  const [rssResponse, sitemapResponse] = await Promise.all([
+    render("/rss.xml"),
+    render("/sitemap.xml"),
+  ]);
+  const [rss, sitemap] = await Promise.all([rssResponse.text(), sitemapResponse.text()]);
+  assert.match(rss, /workout-log-2026-07-25/);
+  assert.match(sitemap, /workout-log-2026-07-25/);
+  assert.doesNotMatch(rss, /draft-example/);
+  assert.doesNotMatch(sitemap, /draft-example/);
+});

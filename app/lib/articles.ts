@@ -1,6 +1,7 @@
 export type Article = {
   slug: string; title: string; excerpt: string; category: string; categorySlug: string;
   tags: string[]; publishedAt: string; updatedAt: string; readingTime: number; featured?: boolean; tone: number;
+  kind?: "workout-log";
 };
 
 export const categories = [
@@ -15,6 +16,7 @@ export const categories = [
 ];
 
 export const articles: Article[] = [
+  { slug: "workout-log-2026-07-25", title: "身体が重い日も、最後まで粘れた。2026年7月25日の筋トレ記録", excerpt: "スクワット100kg、ハーフデッド110kg、懸垂。身体が重い日でも最後まで粘れた日のトレーニング記録です。", category: "筋トレ", categorySlug: "training", tags: ["スクワット", "ハーフデッド", "懸垂", "トレーニング記録"], publishedAt: "2026-07-25", updatedAt: "2026-07-25", readingTime: 3, tone: 0, kind: "workout-log" },
   { slug: "training-menu-for-beginners", title: "筋トレ初心者が週3回を続けるための、がんばりすぎないメニュー", excerpt: "結果を急ぐほど、メニューは複雑になりがち。続く強度と小さな記録から組み立てます。", category: "筋トレ", categorySlug: "training", tags: ["初心者", "習慣化", "自宅トレ"], publishedAt: "2026-07-18", updatedAt: "2026-07-20", readingTime: 7, featured: true, tone: 0 },
   { slug: "ai-notes-workflow", title: "AIと一緒にメモを育てる。毎日15分の小さな知識整理", excerpt: "思いつきを消費せず、あとで使える知識へ。AIを編集者として使うシンプルな流れ。", category: "AI", categorySlug: "ai", tags: ["生成AI", "ノート術"], publishedAt: "2026-07-14", updatedAt: "2026-07-14", readingTime: 5, tone: 1 },
   { slug: "running-slow-is-fine", title: "ゆっくり走る日が、いちばん遠くへ連れていってくれる", excerpt: "速さを追わないランニングが、体力と気持ちにどう効いたかを記録しました。", category: "ランニング", categorySlug: "running", tags: ["LSD", "継続"], publishedAt: "2026-07-10", updatedAt: "2026-07-11", readingTime: 4, tone: 2 },

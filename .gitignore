@@ -53,5 +53,9 @@ next-env.d.ts
 /outputs/
 /work/
 
+# Private originals, generation requests, and unapproved illustrations.
+# Nothing under this directory may be committed or deployed.
+/.private/
+
 # `build/` is intentionally tracked: it contains source for the Sites Vite
 # integration, not generated build output.

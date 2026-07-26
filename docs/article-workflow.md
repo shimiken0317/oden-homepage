@@ -35,11 +35,20 @@
 
 ## C. 画像を追加する
 
+記事固有の写真や図の場合：
+
 1. `public/articles/記事slug/` フォルダーを作り、画像を置きます。
 2. MDXでは `![画像の説明](/articles/記事slug/画像.webp)` のように参照します。
 3. 大きすぎるPNGは避け、写真は適切な寸法へ縮小したWebPなどを推奨します。
 
-画像のパスは安全のため `/articles/` で始まるものだけが許可されています。説明文は読み上げにも使われるため、画像の内容が分かる言葉にします。
+おでんちゃんの挿絵の場合：
+
+1. `pnpm illustration:list` または `content/illustrations/*.yaml` で承認済み素材を探します。
+2. `status: "approved"` の素材だけを使います。
+3. 台帳の `file` と `alt` を使い、`![代替テキスト](/characters/oden-chan/illustrations/画像.webp)` と書きます。
+4. 適切な素材がなければ画像なしにし、不足素材を提案します。
+
+画像のパスは安全のため `/articles/` または承認済みおでんちゃん素材フォルダーで始まるものだけが許可されています。説明文は読み上げにも使われるため、画像の内容が分かる言葉にします。詳しい承認手順は [illustration-workflow.md](illustration-workflow.md) を参照してください。
 
 ## D. やってはいけないこと
 
@@ -49,5 +58,7 @@
 - `.env` や `.env.local`、APIキーなどの秘密情報をcommitしない。
 - mainへ下書きを直接pushしない。記事用ブランチでレビューします。
 - MDXへHTML、JSX、JavaScript式を書かない。
+- `.private` の原画・依頼書・承認待ち画像を記事から参照しない。
+- 未承認画像を `public/` へコピーしない。
 
 frontmatterに誤りがあると、ビルド時に対象ファイル名と原因が表示されます。エラーを無視せず、該当する項目を直してください。

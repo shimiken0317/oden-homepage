@@ -67,6 +67,8 @@ SEARCH:  Breadcrumb → Search input → Result count → Cards / mascot empty s
 
 下書きは `status: "draft"`、公開記事は `status: "published"` とします。draftは通常の一覧・検索・カテゴリー・RSS・sitemap・本番記事URLへ出ません。ローカル開発中だけ `/articles/preview/記事slug` で確認できます。
 
+おでんちゃんの原画・生成候補・承認済み素材は分離して管理します。制作と承認の手順は [docs/illustration-workflow.md](docs/illustration-workflow.md)、スタイル基準は [docs/character-style-guide.md](docs/character-style-guide.md) を参照してください。
+
 ## 記事運用ロードマップ
 
 1. Pagefindのビルド後インデックスとタグ複合フィルターを追加。

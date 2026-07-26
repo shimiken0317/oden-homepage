@@ -16,7 +16,10 @@ function safeLink(url = "") {
 }
 
 function safeImage(url = "") {
-  return url.startsWith("/articles/") ? url : undefined;
+  return url.startsWith("/articles/") ||
+    url.startsWith("/characters/oden-chan/illustrations/")
+    ? url
+    : undefined;
 }
 
 function renderChildren(
@@ -117,7 +120,9 @@ function renderNode(
     case "image": {
       const src = safeImage(node.url);
       if (!src) {
-        throw new Error(`記事画像は /articles/ 以下のパスで指定してください: ${node.url ?? "(未指定)"}`);
+        throw new Error(
+          `記事画像は /articles/ または承認済みのおでんちゃん素材パスで指定してください: ${node.url ?? "(未指定)"}`,
+        );
       }
       return (
         <figure key={key}>

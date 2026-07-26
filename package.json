@@ -10,12 +10,15 @@
     "dev": "vinext dev",
     "build": "vinext build",
     "start": "vinext start",
-    "test": "pnpm run build && node --test tests/content-management.test.mjs tests/rendered-html.test.mjs",
+    "test": "pnpm run build && node --test tests/content-management.test.mjs tests/illustration-library.test.mjs tests/rendered-html.test.mjs",
     "lint": "eslint . --ignore-pattern dist --ignore-pattern .next --ignore-pattern outputs",
     "typecheck": "tsc --noEmit",
     "deploy": "wrangler deploy",
     "deploy:preview": "wrangler versions upload",
-    "db:generate": "drizzle-kit generate"
+    "db:generate": "drizzle-kit generate",
+    "illustration:create-request": "node tools/illustrations/create-request.mjs",
+    "illustration:validate": "node tools/illustrations/validate-catalog.mjs",
+    "illustration:list": "node tools/illustrations/list-assets.mjs"
   },
   "dependencies": {
     "drizzle-orm": "0.45.2",
@@ -45,7 +48,8 @@
     "typescript": "5.9.3",
     "vinext": "0.0.50",
     "vite": "8.0.13",
-    "wrangler": "4.92.0"
+    "wrangler": "4.92.0",
+    "yaml": "2.9.0"
   },
   "type": "module"
 }

@@ -45,6 +45,7 @@ test("公開用メタデータと使い捨てプレビューの除去を確認�
 });
 
 const existingSlugs = [
+  "happy-oden-chan-doodle",
   "workout-log-2026-07-25",
   "training-menu-for-beginners",
   "ai-notes-workflow",

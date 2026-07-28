@@ -50,11 +50,12 @@ test(".private全体がGit対象外で、追跡済みファイルもない", () 
   assert.equal(tracked.trim(), "");
 });
 
-test("空の承認済み台帳と公開素材ライブラリを検証できる", () => {
+test("現在の承認済み台帳と公開素材ライブラリを検証できる", () => {
   const result = inspectCatalog();
   assert.deepEqual(result.errors, []);
-  assert.equal(result.assets.length, 0);
-  assert.equal(result.publicImages.length, 0);
+  assert.ok(result.assets.some((asset) => asset.id === "happy-oden-chan"));
+  assert.equal(result.assets.every((asset) => asset.status === "approved"), true);
+  assert.equal(result.publicImages.length, result.assets.length);
 });
 
 test("正常な承認済み素材を読み込める", (t) => {

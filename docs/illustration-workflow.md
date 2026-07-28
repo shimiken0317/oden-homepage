@@ -6,7 +6,7 @@
 
 ```text
 .private/
-├─ illustration-inbox/       妻の非公開原画
+├─ illustration-inbox/       彼女の非公開原画
 ├─ illustration-requests/    画像生成依頼書
 └─ illustration-review/      生成後の承認待ち画像
 
@@ -19,10 +19,10 @@ public/characters/oden-chan/illustrations/
 
 ## 1. 原画を受け取る
 
-1. 妻の原画を `.private/illustration-inbox/` に保存します。
+1. 彼女の原画を `.private/illustration-inbox/` に保存します。
 2. ファイル名には人名、メールアドレス、撮影場所などの個人情報を入れません。
 3. 元ファイルは加工・上書きせず保存します。向き修正やトリミングが必要なら別ファイルにします。
-4. 外部の画像生成サービスへ渡す前に、利用規約と原画の取り扱いを夫婦で確認します。
+4. 外部の画像生成サービスへ渡す前に、利用規約と原画の取り扱いを二人で確認します。
 
 ## 2. 生成依頼書を作る
 
@@ -41,13 +41,13 @@ pnpm illustration:create-request `
 - `id` が英小文字・数字・ハイフンだけであること。
 - 同じIDの依頼書を上書きしないこと。
 
-作成先は `.private/illustration-requests/<id>.md` です。確認事項を夫婦で埋めてから、[illustration-generation-prompt.md](illustration-generation-prompt.md) と一緒に人間が画像生成サービスへ渡します。
+作成先は `.private/illustration-requests/<id>.md` です。確認事項を二人で埋めてから、[illustration-generation-prompt.md](illustration-generation-prompt.md) と一緒に人間が画像生成サービスへ渡します。
 
 ## 3. 生成候補を確認する
 
 1. 生成候補は `.private/illustration-review/` にだけ保存します。
 2. ファイル名は `<id>-candidate-01.png` のように候補番号を付けます。
-3. [character-style-guide.md](character-style-guide.md) の承認チェックリストを夫婦で確認します。
+3. [character-style-guide.md](character-style-guide.md) の承認チェックリストを二人で確認します。
 4. 一方でも違和感がある場合は未承認のままにし、修正点を依頼書へ追記します。
 5. 承認前に候補を `public/` や記事へコピーしません。
 
@@ -62,7 +62,7 @@ pnpm illustration:create-request `
 5. `file` を `/characters/oden-chan/illustrations/<id>.webp` にします。
 6. `status: "approved"`、承認日、alt、用途、タグを入力します。
 7. `pnpm illustration:validate` を実行します。
-8. 夫婦の最終確認後、公開画像とYAMLを同じcommitへ含めます。
+8. 二人の最終確認後、公開画像とYAMLを同じcommitへ含めます。
 
 承認取り消しや置き換えが必要になった場合に備え、台帳は `status: "deprecated"` も受け付けます。deprecated素材は記事用候補一覧へ表示されません。既存記事から外したことを確認してから画像削除を検討します。
 
@@ -77,8 +77,8 @@ pnpm illustration:create-request `
 | `file` | `/characters/oden-chan/illustrations/` 以下の実在する公開画像 |
 | `status` | 使用可能な `approved`、または使用停止中の `deprecated` |
 | `createdAt` | 制作日。`YYYY-MM-DD` |
-| `approvedAt` | 夫婦の承認日。`YYYY-MM-DD` |
-| `source.type` | `generated-from-wife-original` または、妻が公開用に描き直した `wife-redraw` |
+| `approvedAt` | 二人の承認日。`YYYY-MM-DD` |
+| `source.type` | `generated-from-partner-original` または、彼女が公開用に描き直した `partner-redraw` |
 | `themes` | 記事全体の題材 |
 | `emotions` | おでんちゃんが表している感情 |
 | `situations` | 描かれている具体的な状況 |

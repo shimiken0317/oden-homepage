@@ -24,14 +24,14 @@ function validYaml({ id = "training-effort", file = `${id}.webp`, omit = "" } = 
     status: 'status: "approved"',
     createdAt: 'createdAt: "2026-07-26"',
     approvedAt: 'approvedAt: "2026-07-26"',
-    source: 'source:\n  type: "generated-from-wife-original"',
+    source: 'source:\n  type: "generated-from-partner-original"',
     themes: 'themes:\n  - "筋トレ"',
     emotions: 'emotions:\n  - "一生懸命"',
     situations: 'situations:\n  - "トレーニング中"',
     tags: 'tags:\n  - "ダンベル"',
     recommendedPlacements: 'recommendedPlacements:\n  - "筋トレ記事の見出し後"',
     alt: 'alt: "ダンベルを持って一生懸命トレーニングするおでんちゃん"',
-    notes: 'notes: "夫婦で公開承認済み。"',
+    notes: 'notes: "二人で公開承認済み。"',
   };
   return Object.entries(fields)
     .filter(([name]) => name !== omit)

@@ -42,8 +42,8 @@ export const illustrationSchema = z
     source: z
       .object({
         type: z.enum([
-          "wife-redraw",
-          "generated-from-wife-original",
+          "partner-redraw",
+          "generated-from-partner-original",
         ]),
       })
       .strict(),

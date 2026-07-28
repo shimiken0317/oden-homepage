@@ -1,5 +1,5 @@
 # このファイルをコピーして、content/illustrations/<id>.yaml を作ります。
-# 公開画像と夫婦の承認が揃うまでは .yaml に変更しないでください。
+# 公開画像と二人の承認が揃うまでは .yaml に変更しないでください。
 id: "example-illustration"
 title: "イラストの分かりやすい名前"
 file: "/characters/oden-chan/illustrations/example-illustration.webp"
@@ -7,7 +7,7 @@ status: "approved"
 createdAt: "2026-07-26"
 approvedAt: "2026-07-26"
 source:
-  type: "generated-from-wife-original"
+  type: "generated-from-partner-original"
 themes:
   - "筋トレ"
 emotions:
@@ -19,4 +19,4 @@ tags:
 recommendedPlacements:
   - "筋トレ記事の見出し後"
 alt: "ダンベルを一生懸命持ち上げるおでんちゃん"
-notes: "夫婦で原画との一致と公開範囲を確認済み。"
+notes: "二人で原画との一致と公開範囲を確認済み。"

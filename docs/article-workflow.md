@@ -1,4 +1,4 @@
-# 夫婦での記事更新手順
+# 二人での記事更新手順
 
 記事は `content/posts` の中で、1記事につき1つのMDXファイルとして管理します。MDXは、先頭の基本情報（frontmatter）と、その下のMarkdown本文でできています。TypeScriptやReactを編集する必要はありません。
 

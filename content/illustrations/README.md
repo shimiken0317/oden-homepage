@@ -1,6 +1,6 @@
 # 承認済みイラスト台帳
 
-このフォルダーには、夫婦で公開承認したおでんちゃん素材だけを、1素材1 YAMLで登録します。
+このフォルダーには、二人で公開承認したおでんちゃん素材だけを、1素材1 YAMLで登録します。
 
 - テンプレート：`illustration-template.yaml.example`
 - 公開画像：`public/characters/oden-chan/illustrations/`

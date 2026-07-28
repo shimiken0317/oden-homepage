@@ -7,9 +7,9 @@ import { getSiteUrl } from "./lib/site-url";
 export const metadata: Metadata = {
   metadataBase: new URL(getSiteUrl()),
   title: { default: "おでんのページ", template: "%s｜おでんのページ" },
-  description: "筋トレ、投資、プログラミング、夫婦の日々。おでんちゃんと、暮らしの知識をひとつずつ。",
+  description: "筋トレ、投資、プログラミング、二人の日々。おでんちゃんと、暮らしの知識をひとつずつ。",
   alternates: { canonical: "/" },
-  openGraph: { type: "website", locale: "ja_JP", siteName: "おでんのページ", title: "おでんのページ", description: "好きなことを、じっくり煮込む。", images: [{ url: "/characters/oden-sketch-sheet.png", width: 1395, height: 1154, alt: "妻が夫をイメージして描いた、おでんちゃんの原画" }] },
+  openGraph: { type: "website", locale: "ja_JP", siteName: "おでんのページ", title: "おでんのページ", description: "好きなことを、じっくり煮込む。", images: [{ url: "/characters/oden-sketch-sheet.png", width: 1395, height: 1154, alt: "彼女が彼氏をイメージして描いた、おでんちゃんの原画" }] },
   twitter: { card: "summary_large_image", title: "おでんのページ", description: "好きなことを、じっくり煮込む。", images: ["/characters/oden-sketch-sheet.png"] },
   icons: {
     icon: "/favicon.svg",

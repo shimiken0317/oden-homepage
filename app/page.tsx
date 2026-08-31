@@ -1,62 +1,52 @@
 import Link from "next/link";
-import { ArticleCard } from "./components/article-card";
 import { OdenChan } from "./components/oden-chan";
 import { getAllCategories, getPublishedPosts } from "./lib/posts";
 
 export default function Home() {
   const articles = getPublishedPosts();
   const categories = getAllCategories();
-  const latest = articles.slice(0, 4);
   const featured = articles.find((article) => article.featured) ?? articles[0];
+  const sideNotes = articles.filter((article) => article.slug !== featured.slug).slice(0, 2);
+  const fieldNotes = articles.filter((article) => article.slug !== featured.slug && !sideNotes.some((note) => note.slug === article.slug)).slice(0, 4);
 
-  return (
-    <>
-      <section className="hero shell">
-        <div className="hero-copy">
-          <p className="eyebrow"><span className="status-dot" /> Oden&apos;s small knowledge base</p>
-          <h1>好きなことを、<br /><span>じっくり煮込む。</span></h1>
-          <p className="hero-lead">筋トレ、投資、プログラミング、二人の日々。<br />おでんちゃんと一緒に、暮らしの知識をひとつずつ。</p>
-          <div className="hero-actions">
-            <Link className="button primary" href="/articles">記事を読みにいく <span>→</span></Link>
-            <Link className="button ghost" href="/about">このサイトについて</Link>
-          </div>
+  return <div className="essay-home">
+    <section className="essay-opening shell">
+      <div className="essay-masthead"><p>おでんのページ　第一号</p><p>暮らしの途中で拾った、小さな学びの記録</p></div>
+      <div className="essay-hero-grid">
+        <div className="essay-hero-copy">
+          <p className="essay-kicker">ふたりの知識庫</p>
+          <h1>好きなことを、<br/><em>じっくり煮込む。</em></h1>
+          <p className="essay-intro">筋トレ、投資、プログラミング、そして二人の日々。うまくいったことだけでなく、遠回りした時間も、あとから読める言葉にして残します。</p>
+          <div className="essay-hero-links"><Link href="/articles">すべての記事を見る</Link><Link href="/about">この場所について</Link></div>
         </div>
-        <div className="hero-mascot">
-          <div className="speech">こんにちは！<br /><strong>今日は何を読む？</strong></div>
-          <span className="spark one">✦</span><span className="spark two">✦</span>
-          <OdenChan
-            priority
-            sizes="(max-width: 680px) 350px, 430px"
-            label="手を振って迎える、彼女が彼氏をイメージして描いたおでんちゃん"
-          />
+        <div className="essay-hero-art">
+          <span className="essay-pencil-note">今日は、どこから読もう。</span><div className="essay-sun" aria-hidden="true"/>
+          <OdenChan priority sizes="(max-width: 680px) 310px, 430px" label="手を振って学びを案内する、彼女が彼氏をイメージして描いたおでんちゃん"/>
+          <p className="essay-caption">案内役：おでんちゃん</p>
         </div>
-      </section>
+      </div>
+    </section>
 
-      <section className="quick-strip">
-        <div className="shell quick-inner"><span>まずはここから</span><Link href={`/articles/${featured.slug}`}>{featured.title}</Link><span className="quick-meta">{featured.readingTime} min read　→</span></div>
-      </section>
+    <section className="essay-stories shell" aria-labelledby="latest-heading">
+      <header className="essay-section-title"><span>01</span><div><p>今、読んでほしいもの</p><h2 id="latest-heading">新しく煮えた記事</h2></div></header>
+      <div className="essay-story-layout">
+        <article className="essay-lead-story">
+          <Link className={`essay-lead-visual tone-${featured.tone}`} href={`/articles/${featured.slug}`}><span>FEATURED NOTE</span><strong>{featured.category === "AI" ? "AI" : featured.category.slice(0, 1)}</strong><i aria-hidden="true"/></Link>
+          <div className="essay-lead-copy"><p>{featured.category}　／　{featured.publishedAt.replaceAll("-", ".")}</p><h3><Link href={`/articles/${featured.slug}`}>{featured.title}</Link></h3><p>{featured.excerpt}</p><Link className="essay-read-link" href={`/articles/${featured.slug}`}>続きを読む <span>↗</span></Link></div>
+        </article>
+        <aside className="essay-side-stories" aria-label="新着記事">{sideNotes.map((article,index)=><article className="essay-side-story" key={article.slug}><div><span>0{index+2}</span><span>{article.category}</span></div><h3><Link href={`/articles/${article.slug}`}>{article.title}</Link></h3><p>{article.excerpt}</p><Link href={`/articles/${article.slug}`}>記事へ　→</Link></article>)}</aside>
+      </div>
+    </section>
 
-      <section className="section shell">
-        <div className="section-head"><div><p className="kicker">Latest notes</p><h2>新しく煮えた記事</h2></div><Link href="/articles">すべての記事 <span>→</span></Link></div>
-        <div className="article-grid">{latest.map((article, index) => <ArticleCard article={article} key={article.slug} index={index} />)}</div>
-      </section>
+    <section className="essay-field-section"><div className="shell">
+      <header className="essay-section-title light"><span>02</span><div><p>日々の断片</p><h2>小さなフィールドノート</h2></div></header>
+      <div className="essay-field-grid">{fieldNotes.map((article,index)=><article className="essay-field-note" key={article.slug}><p><span>NO. {String(index+1).padStart(2,"0")}</span><span>{article.readingTime}分</span></p><h3><Link href={`/articles/${article.slug}`}>{article.title}</Link></h3><small>{article.category}　{article.publishedAt.replaceAll("-", ".")}</small></article>)}</div>
+    </div></section>
 
-      <section className="section shell category-section">
-        <div className="section-head"><div><p className="kicker">Explore by topic</p><h2>今日は、どの具にする？</h2></div></div>
-        <div className="category-grid">{categories.map((category, index) => (
-          <Link className="category-card" href={`/categories/${category.slug}`} key={category.slug}>
-            <span className={`category-mark tone-${index % 4}`}>{category.mark}</span>
-            <span><strong>{category.name}</strong><small>{category.description}</small></span><span className="arrow">↗</span>
-          </Link>
-        ))}</div>
-      </section>
-
-      <section className="section shell">
-        <div className="feature-panel">
-          <div><p className="kicker">Recommended</p><h2>迷ったら、まずはこの一杯から。</h2><p>二人の失敗や遠回りも、あとから誰かの近道になる。今月のおでんちゃんおすすめ記事です。</p><Link className="text-link" href={`/articles/${featured.slug}`}>おすすめを読む →</Link></div>
-          <div className="quote-card"><span>“</span><p>{featured.excerpt}</p><small>{featured.category} ・ {featured.readingTime}分で読めます</small></div>
-        </div>
-      </section>
-    </>
-  );
+    <section className="essay-index shell" aria-labelledby="topic-heading">
+      <header className="essay-section-title"><span>03</span><div><p>記録の棚</p><h2 id="topic-heading">今日は、どの具にする？</h2></div></header>
+      <div className="essay-topic-list">{categories.map((category,index)=><Link href={`/categories/${category.slug}`} key={category.slug}><span>{String(index+1).padStart(2,"0")}</span><strong>{category.name}</strong><small>{category.description}</small><i>↗</i></Link>)}</div>
+      <div className="essay-closing-note"><p>うまくいかない日も、<br/>じっくり煮込めば味になる。</p><Link href="/about">二人とおでんちゃんの話　→</Link></div>
+    </section>
+  </div>;
 }

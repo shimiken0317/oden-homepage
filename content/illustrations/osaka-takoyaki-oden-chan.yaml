@@ -1,0 +1,24 @@
+id: "osaka-takoyaki-oden-chan"
+title: "大阪のたこやきおでんちゃん"
+file: "/characters/oden-chan/illustrations/osaka-takoyaki-oden-chan.webp"
+status: "approved"
+createdAt: "2026-09-02"
+approvedAt: "2026-09-02"
+source:
+  type: "generated-from-partner-original"
+themes:
+  - "ご当地おでんちゃん"
+  - "大阪"
+emotions:
+  - "うれしい"
+  - "笑顔"
+situations:
+  - "大阪名物のたこ焼きになって笑っている"
+tags:
+  - "たこ焼き"
+  - "ソース"
+  - "マヨネーズ"
+recommendedPlacements:
+  - "大阪のご当地おでんちゃん記事の冒頭"
+alt: "ソースとマヨネーズをまとったたこ焼きの顔で、元気に笑う大阪のご当地おでんちゃん"
+notes: "添付された完成画像を、大阪のご当地おでんちゃん記事で公開する素材として2026-09-02に登録。構図と色は変更せず、Web用のWebPへ変換した。"

@@ -11,7 +11,7 @@ export function SiteHeader() {
   useEffect(() => { const onScroll = () => setScrolled(window.scrollY > 16); onScroll(); window.addEventListener("scroll", onScroll); return () => window.removeEventListener("scroll", onScroll); }, []);
   function toggleTheme() { const dark = document.documentElement.dataset.theme !== "dark"; document.documentElement.dataset.theme = dark ? "dark" : "light"; localStorage.setItem("oden-theme", dark ? "dark" : "light"); }
   useEffect(() => { const saved = localStorage.getItem("oden-theme"); if (saved) document.documentElement.dataset.theme = saved; }, []);
-  const nav = [["/articles", "記事"], ["/categories", "カテゴリー"], ["/about", "About"], ["/projects", "Projects"]];
+  const nav = [["/articles", "記事"], ["/categories", "カテゴリー"], ["/about", "このサイトについて"], ["/projects", "つくったもの"]];
   return <header className={`site-header ${scrolled ? "scrolled" : ""}`}><div className="header-inner shell">
     <Link href="/" className="brand" aria-label="おでんのページ トップ"><span className="brand-mark"><i /><b /></span><span>おでんのページ<small>ODEN NO PAGE</small></span></Link>
     <nav className={menu ? "open" : ""}>{nav.map(([href, label]) => <Link className={pathname === href ? "active" : ""} href={href} key={href} onClick={() => setMenu(false)}>{label}</Link>)}</nav>
